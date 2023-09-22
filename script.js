@@ -1,76 +1,55 @@
-// Variables globales
+let trainMargin = document.getElementById("train");
+let main = document.getElementById("main");
+let intendedPosition = 0;
+let percent = 0;
 
-const mainContainer = document.querySelector('#main');
-const sections = document.querySelectorAll('.container');
+// TODO: Añadir que se mueva despacio y no a tirones
+// * A lo mejor un "transition: all ease 300ms" funca
+// ! No funciona el "transition: all ease 300ms" porque al pasar ese tiempo, tiene que acelerar el nuevo recorrido
+// * Si no, debería guardar el dato en un lugar y que se actualice frame a frame
 
-let oldPos = 0;
-let actualPos = 0;
-let isRight = true;
+window.addEventListener('scroll', (e) => {
+    let mainHeight = main.clientHeight;
+    let mainPos = main.getBoundingClientRect().top; // Va de 0 a -1088
+    let screenHeight = window.innerHeight;
 
-// Event Listener de la rueda del mouse
-
-mainContainer.addEventListener('wheel', (e) => {
-    // Desplazamiento horizontal
-    mainContainer.scrollLeft += e.deltaY;
-
-    let oldPos = actualPos;
-    actualPos = mainContainer.scrollLeft;
-
-    // Revisa hacia qué lado se mueve
-    (oldPos > actualPos) ? isRight = false : isRight = true;
-
-    // Revisar si debe bloquearse en alguna posicion
-    checkLock();
-    // Revisar animaciones
-    checkVisibility();
-    // Evitar el desplazamiento vertical predeterminado
-    e.preventDefault();
-});
-
-// Funciones auxiliares para el eventListener
-
-function checkVisibility() {
-    sections.forEach(section => {
-        const sectionLeft = section.getBoundingClientRect().left;
-        const sectionRight = section.getBoundingClientRect().right;
-        const windowWidth = window.innerWidth;
-
-        if (sectionLeft < windowWidth * 0.9) {
-            section.classList.add('fade-in');
-        }
-        if (sectionRight < windowWidth * 0.1) {
-            section.classList.remove('fade-in');
-        }
-    });
-}
-
-function checkLock() { // Hacer que tenga un movimiento más suave en vez de este movimiento tan brusco
-    let showedSections = document.getElementsByClassName('fade-in').length;
-
-    if (showedSections > 0) {
-        const windowWidth = window.innerWidth;
-        if (isRight) {
-            let lastSection = document.getElementsByClassName('fade-in')[showedSections -1];
-            let leftFromLast = lastSection.getBoundingClientRect().left;
+    let space = mainHeight - screenHeight;
     
-            if (leftFromLast < windowWidth * 0.8 && leftFromLast > windowWidth * 0.6) {
-                console.log("Deberia mostrarse")
-                console.log(leftFromLast)
-                mainContainer.scrollLeft += (leftFromLast - 0.05 * windowWidth);
-            }
-        } else {
-            if (showedSections == 2) {
-                let firstSection = document.getElementsByClassName('fade-in')[showedSections -2];
-                let rightFromFirst = firstSection.getBoundingClientRect().right;
-                console.log(rightFromFirst)
-                if (rightFromFirst < windowWidth * 0.8 && rightFromFirst < windowWidth * 0.6) {
-                    console.log("Deberia mostrarse")
-                    mainContainer.scrollLeft += (rightFromFirst - 0.95 * windowWidth);
-                }
-            }
-        }
-    }
-}
+    percent = mainPos / space; // ? Va desde 0 hasta -1, siendo -1 el final del todo
+    // FIXME: El 100% significa que está por debajo de la pantalla
+    
+    intendedPosition = -space * percent;
 
-console.log('COSAS POR MEJORAR: Hacer que tenga un movimiento más suave en vez de este movimiento tan brusco, hacer que oculte el contenedor anterior, arreglar el movimiento hacia atrás');
-console.log("La visibilidad moviendose para la izquierda es tal que no siempre funciona correctamente");
+    // train.style.marginTop = `${-space * percent}px`;
+})
+
+// ? Movimiento continuo con setInterval
+// * Podría usar transition: all linear 300ms para que no sea a tirones
+
+setInterval(() => {
+    console.log(parseInt(train.style.marginTop, 10))
+    if (parseInt(train.style.marginTop, 10) < intendedPosition) {
+        console.log(train.style.marginTop)
+        console.log(intendedPosition)
+        train.style.marginTop = `${intendedPosition}px`;
+        // TODO: Hacer que se mueva de a poco hacia la posición deseada (Sumar x pixeles)
+    } else if (parseInt(train.style.marginTop, 10) > intendedPosition) {
+        console.log(train.style.marginTop)
+        console.log(intendedPosition)
+        train.style.marginTop = `${intendedPosition}px`;
+    }
+}, 500);
+
+// ? Movimiento de estación a estación
+// * La idea es que hayan estaciones de cada página y al llegar a una el tren va desde la estación actual a la otra
+
+// let stations = document.getElementsByClassName('station');
+
+// let position = 0;
+
+// ! El while true revienta la página
+// while (true) {
+//     if (Math.abs(intendedPosition - parseInt(train.style.marginTop, 10)) < 100) {
+//         console.log("Cerca");
+//     }
+// }
