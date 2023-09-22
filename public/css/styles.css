@@ -1,0 +1,67 @@
+/* ---- GENERAL ---- */
+
+* {
+    color: black;
+    background-color: white;
+    margin: 0;
+    padding: 0;
+}
+
+/* ---- HEADER ---- */
+
+#header {
+    position: fixed;
+    display: flex;
+    top: 10px;
+    margin-left: 1.5vw;
+    margin-right: 1.5vw;
+    width: 97vw;
+    height: 70px;
+    z-index: 1;
+    background-color: rgb(212, 212, 212);
+    border-radius: 40px;
+    box-shadow: 0px 0px 10px 2px rgb(255, 0, 0);
+}
+
+/* ---- MAIN ---- */
+
+#main {
+    display: flex;
+    flex-direction: column;
+    overflow: hidden;
+    width: auto;
+    padding: 90px 20px 20px 20px;
+    gap: 30px;
+}
+
+/* ---- BLOQUES ---- */
+
+.block {
+    width: 100%;
+    height: calc(100vh - 110px);
+    background-color: aqua;
+}
+
+/* ---- ANIMACIONES DE ENTRADA ---- */
+
+.hidden {
+    opacity: 0;
+    visibility: hidden;
+    transition: opacity 1s ease, transform 1s ease, visibility 1s;
+}
+
+.right {
+    transform: translateX(100%);
+
+}
+
+.left {
+    transform: translateX(-100%);
+}
+
+/* Clase para mostrar elementos con fundido de entrada */
+.fade-in {
+    opacity: 1;
+    transform: translateY(0);
+    visibility: visible;
+}
