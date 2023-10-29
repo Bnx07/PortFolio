@@ -9,14 +9,20 @@ let main = document.getElementById('main');
 
 sidebar.addEventListener('click', (event) => {
 
-    event.stopPropagation();
+    if (window.innerWidth > 768) {
+        event.stopPropagation();
+    }
 
     if (sidebar.style.transform != 'translateX(-20px)') {
         sidebar.style.transform = 'translateX(-20px)';
         // TODO: Añadir que se desplace el limite izquierdo del main
         main.classList.add('movedRight');
     } else {
-        sidebar.style.transform = 'translateX(-400px)';
+        if (window.innerWidth > 768) {
+            sidebar.style.transform = 'translateX(-400px)';
+        } else {
+            sidebar.style.transform = 'translateX(-100%)';
+        }
         main.classList.remove('movedRight');
         // TODO: Añadir que se desplace el limite izquierdo del main
     }
@@ -43,7 +49,13 @@ for (const sidebarButton of sidebarButtons) {
     })
 };
 
-for (const sidebarDiv of sidebarDivs) sidebarDiv.addEventListener('click', (event) => event.stopPropagation());
+for (const sidebarDiv of sidebarDivs) {
+    sidebarDiv.addEventListener('click', (event) => {
+        if (window.innerWidth > 768) {
+            event.stopPropagation();
+        }
+    });
+}
 
 // let trainMargin = document.getElementById("train");
 // let main = document.getElementById("main");

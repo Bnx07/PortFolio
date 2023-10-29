@@ -12,7 +12,7 @@
         <a href="#aboutMe" class="header-topic">Sobre mí</a>
         <a href="#myInterests" class="header-topic">Mis intereses</a>
         <a href="#contact" class="header-topic">Contacto</a>
-        <a href="#projectsIndex" class="header-topic">De qué quiero trabajar</a>
+        <!-- <a href="#projectsIndex" class="header-topic">De qué quiero trabajar</a> -->
         <!-- <a href="#" id="lang">Banderita ES</a> -->
     </header>
 
@@ -21,17 +21,28 @@
 
         <h1 id="myWorks" class="sidebar-button">Mis trabajos</h1>
         <div id="myWorksDiv" class="sidebar-div">
-            <h3>Páginas</h3>
+            <a href="#workPages" class="sidebar-index">Sistema de padrones</a>
+            <a href="#workPages" class="sidebar-index">Sistema de stock</a>
         </div>
 
         <h1 id="myProjects" class="sidebar-button">Mis proyectos</h1>
         <div id="myProjectsDiv" class="sidebar-div">
-            <h3>IA</h3>
-            <h3>Páginas</h3>
+            <a href="#personalAI" class="sidebar-index">IA Tic-Tac-Toe</a>
+            <a href="#personalSchool" class="sidebar-index">Página escolar</a>
+            <a href="#physicsCalculator" class="sidebar-index">Calculadora física</a>
+            <a href="#metroidvaniaGame" class="sidebar-index">Videojuego 2D</a>
         </div>
     </nav>
 
     <main id="main">
+
+        <!-- * La idea sería que esté el title, una descripción, la imagen o demo del proyecto y datos extra-->
+        <!-- * La demo podría ser tanto otra página como github pages, o un HTML insertado -->
+        <!-- * Las demos con información, almacenamiento de archivos o similar, deberían guardar en DB y que se limpie cada x tiempo -->
+        <!-- * En datos extra podría ir que el diseño no es mío, atribuciones, etc -->
+
+        <!-- ! HEADER -->
+
         <div class="main-marginTop" id="aboutMe"></div>
         <div class="main-content">
             <h1 class="main-title">Sobre mí</h1>
@@ -39,15 +50,37 @@
         </div>
 
         <div class="main-marginTop" id="myInterests"></div>
-        <div class="main-content" id="myInterests">
+        <div class="main-content">
             <h1 class="main-title">Mis intereses</h1>
             dasdsadsa
         </div>
 
         <div class="main-marginTop" id="contact"></div>
-        <div class="main-content" id="contact">
+        <div class="main-content">
             <h1 class="main-title">Contacto</h1>
             wasdwasdwasd
+        </div>
+
+        <!-- ! WORKS -->
+
+        <div class="main-marginTop" id="workPages"></div>
+        <div class="main-content">
+            <h1 class="main-title">Trabajos de páginas</h1>
+            asdf
+        </div>
+
+        <!-- ! PERSONAL -->
+
+        <div class="main-marginTop" id="personalAI"></div>
+        <div class="main-content">
+            <h1 class="main-title">Inteligencia Artificial Ta-Te-Ti</h1>
+            wasdf
+        </div>
+
+        <div class="main-marginTop" id="personalSchool"></div>
+        <div class="main-content">
+            <h1 class="main-title">Página escolar</h1>
+            wasdf
         </div>
     </main>
     <script src="script.js"></script>

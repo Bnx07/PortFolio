@@ -89,6 +89,8 @@ header {
 }
 
 .sidebar-div {
+    display: flex;
+    flex-direction: column;
     overflow: hidden;
     width: fit-content;
     height: 0;
@@ -100,6 +102,12 @@ header {
 
 .sidebar-div * {
     background-color: transparent;
+}
+
+.sidebar-index {
+    text-decoration: none;
+    font-size: 1.17em;
+    font-weight: bold;
 }
 
 /* * MAIN */
@@ -114,6 +122,7 @@ header {
     box-shadow: 0 0 10px black;
     transition: all ease 300ms;
     overflow-y: scroll;
+    overflow-x: hidden;
 }
 
 .movedRight {
@@ -139,4 +148,33 @@ header {
     display: flex;
     justify-content: center;
     background-color: transparent;
+}
+
+@media (max-width: 769px) and (min-width: 500px) {
+    * {
+        background-color: red;
+    }
+
+    #sidebar {
+        transform: translateX(-100%);
+        width: 90%;
+    }
+
+    .movedRight {
+        margin-left: 100vw !important;
+    }
+}
+
+@media (max-width: 500px) {
+    * {
+        background-color: blue;
+    }
+
+    .main-marginTop {
+        height: 20px;
+    }
+
+    .movedRight {
+        margin-left: 100vw !important;
+    }
 }
